@@ -1,6 +1,7 @@
 package HomeWork_1;
 
 import java.nio.charset.Charset;
+import java.util.Arrays;
 import java.util.Scanner;
 
 /*
@@ -17,98 +18,104 @@ import java.util.Scanner;
 //
 public class Excercise4 {
     public static Scanner input = new Scanner(System.in);
-    public static void main(String[] args) {
-        System.out.printf("%s%n%s%n%s%n%s%n%s%n%s",
-                          new Ex4_1(),
-                          new Ex4_2(),
-                          new Ex4_3(),
-                          new Ex4_4(),
-                          new Ex4_5(),
-                          new Ex4_6());
-    }
 }
 
 // 4.1 Определить нечётное число
 class Ex4_1 {
-    boolean isOdd(int value) {
-        if (value % 2 != 0) {
-          return true;
+    public static void main(String[] args) {
+        System.out.println("4.1 Определить нечётное число среди двух чисел ");
+        System.out.print("Введите первое число: ");
+        int a = Excercise4.input.nextInt();
+        System.out.print("\nВведите второе число: ");
+        int b = Excercise4.input.nextInt();
+        if( ((a + b) & 1) == 1  ){
+            System.out.println("Введены не корректные числа (Одно число должно быть четным, другое нечетным).");
+            return;
         }
-        return false;
+        System.out.println("Нечетное число равно: " + (""+getOddNumber( a, b )));
     }
-    public String toString() {
-        System.out.print("4.1 проверка нечетности числа.\nВведите целое число: ");
-        int value = Excercise4.input.nextInt();
-        return isOdd(value) ? "Число не четное" : "Число четное";
+    public static int getOddNumber(int a, int b) {
+        return ((a & 1) != 0) ? a : b;
     }
 }
 
 //4.2 Среди трёх чисел найти среднее
 class Ex4_2{
-    double getAverage(int[] arr){
-        double sum = 0;
-        for(int x: arr) sum += x;
-        return sum == 0 ? 0 : sum / arr.length;
-    }
-    public String toString() {
+    public static void main(String[] args){
         System.out.print("4.2 Среди трёх чисел найти среднее.\nВведите первое целое число: ");
         int a = Excercise4.input.nextInt();
         System.out.print("\nВведите второе целое число: ");
         int b = Excercise4.input.nextInt();
         System.out.print("\nВведите третье целое число: ");
         int c = Excercise4.input.nextInt();
-        return "Среднее значение равно: " + Double.toString(getAverage(new int[]{a, b, c}));
+        System.out.println("Среднее значение равно: " + getAverage(a, b, c));
     }
-
+    public static int getAverage(int a, int b, int c){
+        double sum = 0;
+        if( (c + b) > (b + a) && (a > b)) return a;
+        if( (a + b) < (c + a) && (b > a)) return b;
+        return c;
+    }
 }
 
 //4.3 Проверка делимости одного числа на другое
 class Ex4_3{
-    boolean checkDivisionOfTwoNumbers(int a, int b){
-        return a % b == 0;
-    }
-    public String toString() {
+
+    public static void main(String[] args){
         System.out.print("4.3 Проверка делимости одного числа на другое.\nВведите первое целое число: ");
         int a = Excercise4.input.nextInt();
         System.out.print("\nВведите второе целое число: ");
         int b = Excercise4.input.nextInt();
-        return checkDivisionOfTwoNumbers(a, b) ? " Первое число делится без остатка на второе" : "Не делится";
+        if(checkDivisionOfTwoNumbers(a, b)){
+            System.out.printf(" Делится без остатка. Результат выражения %d / %d = %d", a, b, a / b);
+        } else {
+            System.out.printf(" Делится c остатком. Результат выражения %d / %d = %d.\n " +
+                    "Остаток от деления равен: %d", a, b, Math.divideExact(a, b), a % b);
+        }
+    }
+    public static boolean checkDivisionOfTwoNumbers(int a, int b){
+        return Math.floorMod(a, b) == 0;
     }
 }
 
 //4.4 Перевести байты в килобайты или наоборот
 class Ex4_4{
-    double convertByteToKBytes(int value){
-        return (double) value / 1024;
-    }
-    public String toString(){
+
+    public static void main(String[] args){
         System.out.print("4.4 Перевести байты в килобайты или наоборот.\nВведите размер байт: ");
         int value = Excercise4.input.nextInt();
-        return value+"байт = "+Double.toString(convertByteToKBytes(value))+"кБайт";
+        double dVal = convertByteToKBytes(value);
+        System.out.printf("%d байт = %.2f кБайт",value,dVal);
+    }
+    public static double convertByteToKBytes(int value){
+        return (double) value / 1024;
     }
 }
 
 // * 4.5 Буква или иной символ
 class Ex4_5{
-    boolean isLetter(char s){
-        return Character.isLetter(s);
-    }
-    public String toString(){
+    public static void main(String[] args){
         System.out.print("4.5 Буква или иной символ.\nВведите букву или символ: ");
-        String ch = Excercise4.input.next();
-        return isLetter(ch.charAt(0)) ? "Буква" : "Не буква";
+        int code = Excercise4.input.nextInt();
+        if((code > 65) && (code < 91) || (code > 96) && (code < 123)){
+            System.out.println("Буква " + Character.toString(code));
+        } else {
+            System.out.println("Не буква латинского алфавита, а символ " + Character.toString(code));
+        }
+        //String ch = Character.toString(code);
+        //String msg = Character.isLetter(ch.charAt(0)) ? "Буква" : "Не буква";
     }
-
 }
 
 //* 4.6 Определить високосный год или нет
 class Ex4_6{
-    boolean isLeapYear(int year){
-        return year % 4 == 0;
+    private static boolean isLeapYear(int year){
+        return Math.floorMod(year,4) == 0;
     }
-    public String toString(){
+    public static void main(String[] args){
         System.out.print("4.6 Определить високосный год или нет.\nВведите год ");
         int year = Excercise4.input.nextInt();
-        return (isLeapYear(year)) ? "Високосный " : "Не високосный год";
+        String msg = isLeapYear(year) ? "Високосный " : "Не високосный год";
+        System.out.println(msg);
     }
 }
