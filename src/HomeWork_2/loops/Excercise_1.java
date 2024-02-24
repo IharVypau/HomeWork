@@ -1,4 +1,4 @@
-package loops;
+package HomeWork_2.loops;
 
 import java.util.Scanner;
 
@@ -31,20 +31,44 @@ import java.util.Scanner;
    1.6. Вывести таблицу умножения в консоль. В консоли должно получиться также как и на картинке (динозаврика рисовать не надо): https://www.dropbox.com/s/ibakfuppvy2w32g/multiplication_table.jpeg?dl=0
 * */
 public class Excercise_1 {
-    final static int MAX_DIGIT = Integer.MAX_VALUE;
+    final static int MAX_NUMBER = 100;
+    static long result = 1;
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        System.out.println("Введите число больше нуля");
-        String strNum = input.next();
-        int num = Integer.parseInt(strNum);
-        if(num > 0 && num < MAX_DIGIT){
-            long result = num, count = 1;
-            while (result > 1){
-                System.out.println("");
+        System.out.print("Введите число больше нуля и меньше 100: ");
+        int num = input.nextInt();
+        if(num > 0 && num <= MAX_NUMBER){
+            result = inLoop(num);
+            //result = inRecursion(num);
+            if(result > 0){
+                StringBuffer strBuff = new StringBuffer();
+                for(int i = 1; i < num; i++){
+                    strBuff.append(i).append(" * ");
+                }
+                System.out.println(strBuff.toString() + num + " = " + result);
+            } else{
+                System.out.println("Результат выполнения выражения превышает 64 битное целое число (long).");
             }
-
         } else{
             System.out.println("Ввели некорректное число");
+        }
+    }
+    private static long inLoop(long number){
+        long result = number;
+        while(--number > 1) {
+            result *= number;
+            if(result < 0) {
+                result = -1;
+                break;
+            }
+        }
+       return result;
+    }
+    private static long inRecursion(long number){
+        if(number <= 1) return 1;
+        else {
+            long result = number * inRecursion(number-1);
+            return (result < 0) ? -1 : result;
         }
     }
 }
