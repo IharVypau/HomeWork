@@ -1,6 +1,6 @@
-package HomeWork_2.arrays;
+package home_work_2.arrays;
 
-import HomeWork_2.utils.ArraysUtils;
+import home_work_2.utils.ArraysUtils;
 
 /*
 * 2.2 Создать класс ArraysIteration. В этом классе написать перебор (итерирование) массива при помощи do....while, while, for, foreach.

@@ -1,7 +1,5 @@
-package HomeWork_1;
+package home_work_1;
 
-import java.nio.charset.Charset;
-import java.util.Arrays;
 import java.util.Scanner;
 
 /*

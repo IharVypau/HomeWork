@@ -1,7 +1,4 @@
-package HomeWork_1;
-
-import java.lang.reflect.Array;
-import java.util.Arrays;
+package home_work_1;
 
 /*
 * Создать СТАТИЧЕСКИЙ метод createPhoneNumber рядом с методом main,

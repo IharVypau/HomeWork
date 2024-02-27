@@ -1,4 +1,4 @@
-package HomeWork_2.loops;
+package home_work_2.loops;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
@@ -84,10 +84,10 @@ class Ex1_2{
         Scanner input = new Scanner(System.in);
         System.out.print("Введите любое целое число: ");
         String numStr = input.next();
-        if(Pattern.matches("\\d*", numStr) && Integer.parseInt(numStr) >0){
+        if(numStr.matches("-?\\d+")){
             long result = multiplyStringOfDigits(numStr);
             System.out.println(String.join(" * ", numStr.split(""))+ " = " + result);
-        }else if(numStr.contains(".")){
+        }else if(numStr.matches("-?\\d+.\\d+")){
             System.out.println("Введено не целое число");
         } else System.out.println("Введено не число");
     }

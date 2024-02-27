@@ -1,8 +1,7 @@
-package HomeWork_2.arrays;
+package home_work_2.arrays;
 
-import HomeWork_2.utils.ArraysUtils;
+import home_work_2.utils.ArraysUtils;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Ex2_4 {
@@ -58,7 +57,7 @@ public class Ex2_4 {
                 arr[i - counter] = arr[i];
             }
         }
-        for (int i = arr.length-1; i >= arr.length - counter; i--) {
+        for (int i = arr.length - counter - 1; i < arr.length; i++) {
             arr[i] = 0;
         }
         return Arrays.toString(arr);

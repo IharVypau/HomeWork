@@ -1,4 +1,4 @@
-package HomeWork_2.arrays;
+package home_work_2.arrays;
 
 public interface IArraysOperation {
     void outputArray2_2_1(int[] container);
