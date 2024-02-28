@@ -40,7 +40,7 @@ public class Ex2 {
 
     public static void main(String[] args) {
         container = ArraysUtils.arrayFromConsole();
-        container2 = ArraysUtils.arrayRandom(5, 102);
+        container2 = ArraysUtils.arrayRandom(5, 100);
         IArraysOperation doWhileOperation = new DoWhileOperation();
         IArraysOperation whileOperation = new WhileOperation();
         IArraysOperation forOperation = new ForOperation();
