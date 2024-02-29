@@ -6,13 +6,13 @@ package home_work_2.loops;
    1.1.1. Используя только цикл
    1.1.2.* Используя рекурсию
 * */
-public class Ex1_1 {
+public class Ex1_1_1 {
     public static void main(String[] args) {
-        if(args.length == 1 && args[0].matches("[1-9]+\\d*")){
+
+        if(args.length == 1 && args[0].matches("[2-9](\\d){0,4}")){
             System.out.println("Введенное число через аргумент: " + args[0]);
             int num = Integer.parseInt(args[0]);
             long  result = inLoop(num);
-           result = inRecursion(num);
             if(result > 0){
                 StringBuffer strBuff = new StringBuffer();
                 for(int i = 1; i < num; i++){
@@ -23,7 +23,7 @@ public class Ex1_1 {
                 System.out.println("Результат выполнения выражения превышает 64 битное целое число (long).");
             }
         }else{
-            System.out.println("Ввели некорректное число");
+            System.out.println("Не корректное число, должно быть от 2 до 99999");
         }
     }
     private static long inLoop(long number){
@@ -39,15 +39,7 @@ public class Ex1_1 {
         }
         return result;
     }
-    private static long inRecursion(long number){
-        long result ;
-        if(number <= 1) return 1;
-        else {
-            long prevResult = number;
-            result = number * inRecursion(number - 1);
-            return (result < 0 || !checkOwerflowByMultiplyTwoNumbers(number, prevResult)) ? -1 : result;
-        }
-    }
+
     private static boolean checkOwerflowByMultiplyTwoNumbers(long a, long b){
         long result = a * b;
         return a == result / b;

@@ -16,34 +16,69 @@ import java.util.Scanner;
 public class Ex1_5 {
     static final int MAX_RAND_VALUE = 10000;
     static final int MIN_RAND_VALUE = 1000;
+    static final String ERROR_INPUT_MSG = "Введено не корректное число";
 
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        System.out.print("Введите целое число: ");
-        int num = input.nextInt();
-        System.out.println("Наибольшая цифра этого натурального числа = " + getNaturalNumber(num));
+        System.out.print("Найти наибольшую цифру натурального числа. Введите число : ");
+        String numStr = input.next();
+        if (cheakInputNumber(numStr)){
+            int num = Integer.parseInt(numStr);
+            System.out.println("Наибольшая цифра этого натурального числа = " + getNaturalNumber(num));
+        }else showInputErrorMessage();
         System.out.printf("Вероятность выпадения случайных чисел на выборке > 1000 чисел: %3.2f%% %n",getStatisticsOfEvenNumbers());
         System.out.print("Посчитать четные и нечетные цифры от введенного целого числа. Введите число: ");
-        int num2 = input.nextInt();
-        int countOddNums = countEvenOrOddNums(num2,true);
-        int countEvenNums = countEvenOrOddNums(num2,false);
-        System.out.println("В числе 1231233, нечетных - " + countOddNums + ", четных -  " + countEvenNums);
+        numStr = input.next();
+        if (cheakInputNumber(numStr)){
+            int num = Integer.parseInt(numStr);
+            int countOddNums = countEvenOrOddNums(num,true);
+            int countEvenNums = countEvenOrOddNums(num,false);
+            System.out.println("В числе " + num + ", нечетных - " + countOddNums + ", четных -  " + countEvenNums);
+        }else {
+            showInputErrorMessage();
+        }
         System.out.print("Посчитать Ряд Фибоначчи числа 132. Введите количество элементов ряда для отображения: ");
-        int num3 = input.nextInt();
-        System.out.print("Ряд Фибоначчи числа 132: ");
-        countFibonacci(132, num3);
-        System.out.println("Вывести ряд чисел в диапазоне с шагом");
+        numStr = input.next();
+        if (cheakInputNumber(numStr)){
+            int num = Integer.parseInt(numStr);
+            System.out.print("Ряд Фибоначчи числа 132: ");
+            countFibonacci(132, num);
+        }else {
+            showInputErrorMessage();
+        }
+        System.out.println("\nВывести ряд чисел в диапазоне с шагом");
         System.out.print("Введите максимальное натуральное число: ");
-        int max = input.nextInt();
-        System.out.print("Введите минимальное натуральное число: ");
-        int min = input.nextInt();
-        System.out.print("Введите шаг: ");
-        int step = input.nextInt();
-        showRowOfNumsWithStep(min, max, step);
-        System.out.println("Переворот числа");
+        String maxStr = input.next();
+        if (cheakInputNumber(maxStr)){
+            int max = Integer.parseInt(maxStr);
+            System.out.print("Введите минимальное натуральное число: ");
+            String minStr = input.next();
+            if (cheakInputNumber(minStr)){
+                int min = Integer.parseInt(minStr);
+                System.out.print("Введите шаг: ");
+                String stepStr = input.next();
+                if (cheakInputNumber(stepStr)){
+                    int step = Integer.parseInt(stepStr);
+                    showRowOfNumsWithStep(min, max, step);
+                }else {
+                    showInputErrorMessage();
+                }
+            }else {
+                showInputErrorMessage();
+            }
+        }else {
+            showInputErrorMessage();
+        }
+
+        System.out.println("\nПереворот числа");
         System.out.print("Введите натуральное число: ");
-        int num4 = input.nextInt();
-        showReverseNumber(num4);
+        numStr = input.next();
+        if (cheakInputNumber(numStr)){
+            int num = Integer.parseInt(numStr);
+            showReverseNumber(num);
+        }else {
+            showInputErrorMessage();
+        }
         System.out.println("Таблица умножения");
         showMultiplicationTable();
 
@@ -95,19 +130,25 @@ public class Ex1_5 {
         System.out.println(new StringBuffer(number + "").reverse());
     }
     static void showMultiplicationTable() {
-        for (int i = 1; i < 10; i++) {
+        for (int i = 1; i <= 10; i++) {
             for (int j = 2; j <= 5; j++) {
-                System.out.printf(" %d x %d = %2d ", j, i, (i * j));
+                System.out.printf(" %d x %2d = %2d ", j, i, (i * j));
             }
             System.out.println();
         }
         System.out.println();
-        for (int i = 1; i < 10; i++) {
+        for (int i = 1; i <= 10; i++) {
             for (int j = 6; j <= 9; j++) {
-                System.out.printf(" %d x %d = %2d ", j, i, (i * j));
+                System.out.printf(" %d x %2d = %2d ", j, i, (i * j));
             }
             System.out.println();
         }
     }
 
+    static boolean cheakInputNumber(String numberStr){
+        return numberStr.matches("[1-9]\\d*");
+    }
+    static void showInputErrorMessage(){
+        System.out.println(ERROR_INPUT_MSG);
+    }
 }
