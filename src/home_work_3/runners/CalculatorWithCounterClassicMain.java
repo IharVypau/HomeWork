@@ -15,6 +15,6 @@ public class CalculatorWithCounterClassicMain {
         calc.incrementCountOperation();
         double result = calc.addition(x4, x2);
         calc.incrementCountOperation();
-        System.out.print("Result = "+ result + ", count of operations = "+ calc.getCountOperation());
+        System.out.printf("Result =  %.2f, count of operations = %d%n", result, calc.getCountOperation());
     }
 }

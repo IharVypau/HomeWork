@@ -6,6 +6,6 @@ public class CalculatorWithMathExtendsMain {
     public static void main(String[] args) {
         CalculatorWithMathExtends calc = new CalculatorWithMathExtends();
         double result =   calc.addition((calc.addition( 4.1, calc.multiplication(15, 7))), calc.pow(calc.division(28, 5),2));
-        System.out.println(result);
+        System.out.printf("%.2f%n", result);
     }
 }
