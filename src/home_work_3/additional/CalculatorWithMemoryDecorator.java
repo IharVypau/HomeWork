@@ -1,51 +1,62 @@
 package home_work_3.additional;
 
 import home_work_3.calcs.api.ICalculator;
-import home_work_3.calcs.simple.CalculatorWithMathExtends;
 
-public class CalculatorWithMemoryDecorator implements ICalculator {
-
+public class CalculatorWithMemoryDecorator  implements ICalculator {
+    private static final int SIZE_OF_MEMORY = 1;
     private ICalculator calc;
-    private double memory, tempMemory;
+    private double lastResult;
+    private double[] memory;
+    private int currMemoryIdx = -1;
+
     public CalculatorWithMemoryDecorator(ICalculator calc){
         this.calc = calc;
+        memory = new double[SIZE_OF_MEMORY];
     }
     public double addition(double a, double b){
-        tempMemory = calc.addition(a, b);
-        return tempMemory;
+        lastResult = calc.addition(a, b);
+        return lastResult;
     }
     public double subtraction(double a, double b){
-        tempMemory = calc.subtraction(a, b);
-        return tempMemory;
+        lastResult = calc.subtraction(a, b);
+        return lastResult;
     }
     public double division(double a, double b){
-        tempMemory = calc.division(a, b);
-        return tempMemory;
+        lastResult = calc.division(a, b);
+        return lastResult;
     }
     public double multiplication(double a, double b){
-        tempMemory = calc.multiplication(a, b);
-        return tempMemory;
+        lastResult = calc.multiplication(a, b);
+        return lastResult;
     }
     public double pow(double a, int b){
-        tempMemory = calc.pow(a, b);
-        return tempMemory;
+        lastResult = calc.pow(a, b);
+        return lastResult;
     }
     public double abs(double a){
-        tempMemory = calc.abs(a);
-        return tempMemory;
+        lastResult = calc.abs(a);
+        return lastResult;
     }
     public double sqrt(double a){
-        tempMemory = calc.sqrt(a);
-        return tempMemory;
+        lastResult = calc.sqrt(a);
+        return lastResult;
     }
     public void save(){
-        memory = tempMemory;
+        if(currMemoryIdx < SIZE_OF_MEMORY){
+            memory[++currMemoryIdx] = lastResult;
+        }else{
+            memory[currMemoryIdx] = lastResult;
+        }
     }
     public double load(){
-        tempMemory = memory;
-        memory = 0;
-        return tempMemory;
+        if(currMemoryIdx > -1){
+            return memory[currMemoryIdx--];
+        }else{
+            System.out.println("Ошибка операции: память пуста");
+        }
+        return 0;
     }
+
     public ICalculator getCalculator() {
         return calc;
     }

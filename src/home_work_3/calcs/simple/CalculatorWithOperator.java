@@ -31,4 +31,8 @@ public class CalculatorWithOperator implements ICalculator {
     public double sqrt(double a) {
         return Math.sqrt(a);
     }
+
+    public ICalculator getCalculator() {
+        return this;
+    }
 }
