@@ -15,7 +15,7 @@ public class DataContainerMain {
         container2.add(1);
         container2.add(3);
         DataContainer.sort(container1, new SortByStringLenghtComparator());
-        //container2.sort(new SortByNumberComparator());
+        container2.sort(new SortByNumberComparator());
         //DataContainer.sort(container1);
         DataContainer.sort(container2);
         System.out.println(container1);
