@@ -1,10 +1,13 @@
 package home_work_4;
 
+import home_work_4.utils.SortUtils;
+
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.Objects;
 
-public class DataContainer<T> {
+public class DataContainer<T> implements Iterable<T>{
     private T[] data;
     private int numOfElements = 0;
 
@@ -66,7 +69,6 @@ public class DataContainer<T> {
     public static <T> void sort(DataContainer<T> container, Comparator<T> comparator) {
         SortUtils.mixSort(comparator, container.getItems());
     }
-
     private void deleteItemFromData(int deleteIndex) {
         for (int i = deleteIndex; i < data.length - 1; i++) {
             data[i] = data[i + 1];
@@ -83,13 +85,19 @@ public class DataContainer<T> {
     }
 
     public String toString() {
-        String result = "[";
-        for (int i = 0; i < data.length; i++) {
-            result += data[i];
-            if (i != data.length - 1) {
-                result += ", ";
+        Iterator<T> it = this.iterator();
+        String output = "[";
+        while(it.hasNext()) {
+            output += it.next();;
+            if(it.hasNext()) {
+                output += ", ";
             }
         }
-        return result + "]";
+        output += "]";
+        return output;
+    }
+
+    public Iterator<T> iterator() {
+        return new DataContainerIterator<>(data);
     }
 }
