@@ -9,7 +9,7 @@ import java.util.Objects;
 
 public class DataContainer<T> implements Iterable<T> {
     private static final String ERROR_INSERT_NULL_MSG = "Данный элемент == null, в наш контейнер вставлять нельзя";
-    private static final int MIN_STRING_ARRAY_LENGTH = 3;
+    private static final int MIN_STRING_ARRAY_LENGTH = 2;
     private T[] data;
     private int numOfElements = 0;
     private int cursor = 0;
@@ -103,7 +103,7 @@ public class DataContainer<T> implements Iterable<T> {
             }
         }
         if (output.length() > MIN_STRING_ARRAY_LENGTH) {
-            output = output.substring(0, (output.length() - 2));
+            output = output.substring(0, (output.length() - MIN_STRING_ARRAY_LENGTH));
         }
         output += "]";
         return output;
