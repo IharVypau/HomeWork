@@ -7,28 +7,38 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.Objects;
 
-public class DataContainer<T> implements Iterable<T>{
+public class DataContainer<T> implements Iterable<T> {
+    private static final String ERROR_INSERT_NULL_MSG = "Данный элемент == null, в наш контейнер вставлять нельзя";
     private T[] data;
     private int numOfElements = 0;
+    private int cursor = 0;
 
     public DataContainer(T[] data) {
         this.data = data;
+        numOfElements = data.length;
     }
 
     public int add(T item) {
         if (item == null) {
+            System.out.println(ERROR_INSERT_NULL_MSG);
             return -1;
         }
-        if (isFull()) {
-            data = Arrays.copyOf(data, data.length + 1);
+        for (T value : this) {
+            if (value == null) {
+                break;
+            }
+            cursor++;
         }
-        int index = numOfElements++;
-        data[index] = item;
-        return index;
+        if (cursor == data.length) {
+            data = Arrays.copyOf(data, data.length + 1);
+            numOfElements++;
+        }
+        data[cursor] = item;
+        return cursor;
     }
 
     public T get(int index) {
-        if (index > data.length) {
+        if (index >= data.length) {
             return null;
         }
         return data[index];
@@ -41,6 +51,7 @@ public class DataContainer<T> implements Iterable<T>{
     public boolean delete(int index) {
         if (!isEmpty() && numOfElements > index) {
             deleteItemFromData(index);
+            numOfElements--;
             return true;
         }
         return false;
@@ -69,15 +80,12 @@ public class DataContainer<T> implements Iterable<T>{
     public static <T> void sort(DataContainer<T> container, Comparator<T> comparator) {
         SortUtils.mixSort(comparator, container.getItems());
     }
+
     private void deleteItemFromData(int deleteIndex) {
         for (int i = deleteIndex; i < data.length - 1; i++) {
             data[i] = data[i + 1];
         }
         data = Arrays.copyOf(data, data.length - 1);
-    }
-
-    private boolean isFull() {
-        return numOfElements == data.length;
     }
 
     private boolean isEmpty() {
@@ -87,11 +95,14 @@ public class DataContainer<T> implements Iterable<T>{
     public String toString() {
         Iterator<T> it = this.iterator();
         String output = "[";
-        while(it.hasNext()) {
-            output += it.next();;
-            if(it.hasNext()) {
-                output += ", ";
+        while (it.hasNext()) {
+            T item = it.next();
+            if (item != null) {
+                output += item + ", ";
             }
+        }
+        if (output.length() > 2) {
+            output = output.substring(0, (output.length() - 2));
         }
         output += "]";
         return output;

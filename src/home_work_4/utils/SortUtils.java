@@ -8,7 +8,7 @@ public class SortUtils<T> {
         while (first < last) {
             lastIndex = -1;
             for (int i = first; i < last; i++) {
-                if (comparator.compare(data[i], data[i + 1]) > 0) {
+                if (data[i]!= null && data[i+1]!= null && comparator.compare(data[i], data[i + 1]) > 0) {
                     swap(i, i + 1, data);
                     lastIndex = i;
                 }
@@ -30,7 +30,7 @@ public class SortUtils<T> {
         while (first < last) {
             lastIndex = -1;
             for (int i = first; i < last; i++) {
-                if (data[i].compareTo(data[i + 1]) > 0) {
+                if (data[i]!= null && data[i+1]!= null && data[i].compareTo(data[i + 1]) > 0) {
                     swap(i, i + 1, data);
                     lastIndex = i;
                 }
