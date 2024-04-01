@@ -9,10 +9,10 @@ import java.util.Objects;
 
 public class DataContainer<T> implements Iterable<T> {
     private static final String ERROR_INSERT_NULL_MSG = "Данный элемент == null, в наш контейнер вставлять нельзя";
+    private static final String ARR_DELIMITER = ", ";
     private static final int MIN_STRING_ARRAY_LENGTH = 2;
     private T[] data;
     private int numOfElements = 0;
-    private int cursor = 0;
 
     public DataContainer(T[] data) {
         this.data = data;
@@ -20,6 +20,7 @@ public class DataContainer<T> implements Iterable<T> {
     }
 
     public int add(T item) {
+        int cursor = 0;
         if (item == null) {
             System.out.println(ERROR_INSERT_NULL_MSG);
             return -1;
@@ -30,9 +31,8 @@ public class DataContainer<T> implements Iterable<T> {
             }
             cursor++;
         }
-        if (cursor == data.length) {
-            data = Arrays.copyOf(data, data.length + 1);
-            numOfElements++;
+        if (cursor == numOfElements) {
+            data = Arrays.copyOf(data, ++numOfElements);
         }
         data[cursor] = item;
         return cursor;
@@ -49,20 +49,19 @@ public class DataContainer<T> implements Iterable<T> {
         return data;
     }
 
-    public boolean delete(int index) {
-        if (!isEmpty() && numOfElements > index) {
-            deleteItemFromData(index);
-            numOfElements--;
+    public boolean delete(int idx) {
+        if (isNotEmpty() && idx > 0 && idx < numOfElements) {
+            remove(idx);
             return true;
         }
         return false;
     }
 
     public boolean delete(T item) {
-        if (!isEmpty() && item != null) {
-            for (int i = 0; i < data.length; i++) {
-                if (Objects.equals(data[i], item)) {
-                    deleteItemFromData(i);
+        if (isNotEmpty() && item != null) {
+            for (int idx = 0; idx < numOfElements; idx++) {
+                if (Objects.equals(data[idx], item)) {
+                    remove(idx);
                     return true;
                 }
             }
@@ -82,24 +81,27 @@ public class DataContainer<T> implements Iterable<T> {
         SortUtils.mixSort(comparator, container.getItems());
     }
 
-    private void deleteItemFromData(int deleteIndex) {
-        for (int i = deleteIndex; i < data.length - 1; i++) {
+    private void remove(int idx) {
+        for (int i = idx; i < numOfElements - 1; i++) {
             data[i] = data[i + 1];
         }
-        data = Arrays.copyOf(data, data.length - 1);
+        data = Arrays.copyOf(data, --numOfElements);
     }
 
-    private boolean isEmpty() {
-        return numOfElements == 0;
+    private boolean isNotEmpty() {
+        return numOfElements > 0;
+    }
+
+    public Iterator<T> iterator() {
+        return new DataContainerIterator<>(data);
     }
 
     public String toString() {
         Iterator<T> it = this.iterator();
         String output = "[";
-        while (it.hasNext()) {
-            T item = it.next();
-            if (item != null) {
-                output += item + ", ";
+        for (T value : this) {
+            if (value != null) {
+                output += value + ARR_DELIMITER;
             }
         }
         if (output.length() > MIN_STRING_ARRAY_LENGTH) {
@@ -107,9 +109,5 @@ public class DataContainer<T> implements Iterable<T> {
         }
         output += "]";
         return output;
-    }
-
-    public Iterator<T> iterator() {
-        return new DataContainerIterator<>(data);
     }
 }

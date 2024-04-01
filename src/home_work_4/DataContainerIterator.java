@@ -1,5 +1,6 @@
 package home_work_4;
 
+import java.util.Arrays;
 import java.util.Iterator;
 
 public class DataContainerIterator<T> implements Iterator<T> {
@@ -13,6 +14,7 @@ public class DataContainerIterator<T> implements Iterator<T> {
     public boolean hasNext() {
         return currentIdx < data.length;
     }
+
     public T next() {
         return data[currentIdx++];
     }

@@ -12,8 +12,8 @@ public class DataContainerMain {
         * 3. Из-за особенностей дженериков в данном классе обязательно будет присутствовать один конструктор DataContainer(T[]).
         * */
         DataContainer<String> container1 = new DataContainer<>(new String[]{"i", "hello", "1", "Как домашка"});
-        DataContainer<Integer> container2 = new DataContainer<>(new Integer[]{1, 2, 3, null, null, null});
-        DataContainer<Integer> container3 = new DataContainer<>(new Integer[]{1, null, 3, null, null, null});
+        DataContainer<Integer> container2 = new DataContainer<>(new Integer[]{3, 2, 33, null, null, null});
+        DataContainer<Integer> container3 = new DataContainer<>(new Integer[]{1, null, 3, null, null, 55});
         DataContainer<Integer> container4 = new DataContainer<>(new Integer[]{});
 
         /*
@@ -36,6 +36,7 @@ public class DataContainerMain {
         * */
         int idx5 = container4.add(999);
         System.out.println(container4.get(idx5));
+        System.out.println(container4);
 
         /*
         * 6. В данном классе должен быть метод T[] getItems(). Данный метод возвращает массив из поля data.
@@ -61,6 +62,8 @@ public class DataContainerMain {
         *   8.4 Освободившуюся ячейку необходимо удалить полностью. Пустых элементов не должно быть.
         *
          * */
+
+        System.out.println(container1);
         System.out.println(container1.delete((String)"hello"));
         System.out.println(container1);
         System.out.println(container1.delete((String)"bye"));
@@ -83,6 +86,7 @@ public class DataContainerMain {
         * 11.* В DataContainer добавить СТАТИЧЕСКИЙ метод void sort(DataContainer<.............> container) с дженериком extends Comparable.
         * */
         DataContainer.sort(container6);
+        System.out.println(container6);
 
         /*
         * 12.* В DataContainer добавить СТАТИЧЕСКИЙ метод void sort(DataContainer<.............> container, Comparator<.......> comparator)
@@ -90,6 +94,7 @@ public class DataContainerMain {
         * */
         DataContainer.sort(container1, new StringLenghtComparator());
         DataContainer.sort(container2, new NumberComparator());
+        System.out.println(container2);
 
         /*
         * 13.** Реализовать в DataContainer интерфейс Iterable
@@ -97,6 +102,5 @@ public class DataContainerMain {
         for (String value : container1) {
             System.out.print(value+ " ");
         }
-
     }
 }
