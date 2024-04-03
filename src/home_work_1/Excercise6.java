@@ -24,13 +24,17 @@ public class Excercise6 {
     public static void main(String[] args) {
 
     }
+    public static boolean checkIsFriend(String name){
+        return Objects.equals(Excercise6.MEN, name) || Objects.equals(Excercise6.WOMEN, name);
+    }
+
 }
 class Ex6_1{
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         System.out.print("Введите ваше имя: ");
         String name = input.next();
-        if(Objects.equals(Excercise6.MEN, name) || Objects.equals(Excercise6.WOMEN, name)){
+        if(Excercise6.checkIsFriend(name)){
             System.out.println(Excercise6.friendGreeting);
         } else {
             System.out.println(Excercise6.guestGreeting);
@@ -43,7 +47,7 @@ class Ex6_2{
         Scanner input = new Scanner(System.in);
         System.out.print("Введите ваше имя: ");
         String name = input.next();
-        if(Objects.equals(Excercise6.MEN, name)){
+        if(Excercise6.checkIsFriend(name)){
             System.out.println(Excercise6.friendGreeting);
             return;
         } else if(Objects.equals(Excercise6.WOMEN, name)){

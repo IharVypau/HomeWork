@@ -9,7 +9,7 @@ package home_work_1;
  (Взято с https://www.codewars.com/kata/525f50e3b73515a6db000b83/train/java). В задании нельзя использовать колекции, стрима.
 * */
 public class Excercise7 {
-    static String createPhoneNumber(int[] digits){
+    public static String createPhoneNumber(int[] digits){
         String result = "";
         for(int i: digits){
             result += ""+i;

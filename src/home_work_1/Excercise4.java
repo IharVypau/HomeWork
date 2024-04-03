@@ -16,6 +16,24 @@ import java.util.Scanner;
 //
 public class Excercise4 {
     public static Scanner input = new Scanner(System.in);
+    public int getOddNumber(int a, int b){
+        return Ex4_1.getOddNumber(a, b);
+    }
+    public int getAverage(int a, int b, int c){
+        return Ex4_2.getAverage(a, b, c);
+    }
+    public boolean checkDivisionOfTwoNumbers(int a, int b){
+        return Ex4_3.checkDivisionOfTwoNumbers(a, b);
+    }
+    public double convertByteToKBytes(int a){
+        return Ex4_4.convertByteToKBytes(a);
+    }
+    public boolean isLetter(char c){
+        return Ex4_5.isLetter(c);
+    }
+    public boolean isLeapYear(int year){
+        return Ex4_6.isLeapYear(year);
+    }
 }
 
 // 4.1 Определить нечётное число
@@ -103,11 +121,14 @@ class Ex4_5{
         //String ch = Character.toString(code);
         //String msg = Character.isLetter(ch.charAt(0)) ? "Буква" : "Не буква";
     }
+    public static boolean isLetter(char ch){
+        return Character.isLetter(ch);
+    }
 }
 
 //* 4.6 Определить високосный год или нет
 class Ex4_6{
-    private static boolean isLeapYear(int year){
+    public static boolean isLeapYear(int year){
         return Math.floorMod(year,4) == 0;
     }
     public static void main(String[] args){

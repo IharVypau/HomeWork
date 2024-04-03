@@ -1,6 +1,8 @@
 package home_work_3.runners;
 
 import home_work_3.additional.CalculatorStringExpression;
+import home_work_3.calcs.simple.CalculatorWithMathCopy;
+
 import java.util.Scanner;
 
 public class CalculatorStringExpressionMain {
@@ -11,9 +13,9 @@ public class CalculatorStringExpressionMain {
         String input =   "4.1 + 15 * 7 + (28 / 5) ^ 2"; // 140.46"
         input= input.replaceAll("\\s+","");
         System.out.println(input);
-        CalculatorStringExpression stringCalcExpr = new CalculatorStringExpression(input);
+        CalculatorStringExpression stringCalcExpr = new CalculatorStringExpression(new CalculatorWithMathCopy());
         if(stringCalcExpr.isCorrect()){
-            System.out.printf("%.2f%n", stringCalcExpr.parseAndCalculate());
+            System.out.printf("%.2f%n", stringCalcExpr.calculate(input));
         }else {
             System.out.println("Выражение не корректное");
         }
