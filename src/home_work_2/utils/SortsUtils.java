@@ -3,8 +3,7 @@ package home_work_2.utils;
 import java.util.Arrays;
 
 public class SortsUtils {
-    public static void sort(int[] arr){
-        System.out.print("Bubble sort: " + Arrays.toString(arr));
+    public static int[] sort(int[] arr){
         for (int i = 0; i < arr.length; i++) {
             for (int j = i +1;j < arr.length; j++){
                 if (arr[i] > arr[j]){
@@ -12,12 +11,11 @@ public class SortsUtils {
                 }
             }
         }
-        System.out.println(" -> " + Arrays.toString(arr));
+        return arr;
     }
-    public static void shake(int[] arr){
-        System.out.print("Shake sort: " +Arrays.toString(arr));
+    public static int[] shake(int[] arr){
         int leftBorder = 0, rightBorder = arr.length -1;
-        int last = -1, tmp;
+        int last = -1;
         while(leftBorder < rightBorder){
             last = -1;
             for (int i = leftBorder; i < rightBorder; i++){
@@ -36,9 +34,9 @@ public class SortsUtils {
             }
             leftBorder = last;
         }
-        System.out.println(" -> " + Arrays.toString(arr));
+        return  arr;
     }
-    public static void swap(int a, int b, int[] arr){
+    private static void swap(int a, int b, int[] arr){
         int tmp = arr[b];
         arr[b] = arr[a];
         arr[a] = tmp;

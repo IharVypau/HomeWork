@@ -8,15 +8,13 @@ package home_work_2.loops;
 * */
 public class Ex1_2 {
     public static void main(String[] args) {
-        if(args[0].matches("-?\\d+")){
+        if(args.length != 0 && args[0].matches("^[1-9]+")){
             String numberStr = args[0];
             long result = multiplyStringOfDigits(numberStr);
             System.out.println(String.join(" * ", numberStr.split(""))+ " = " + result);
-        }else if(args[0].matches("-?\\d+.\\d+")){
-            System.out.println("Введено не целое число");
-        } else System.out.println("Введено не число");
+        }else  System.out.println("Введено не число");
     }
-    static long multiplyStringOfDigits(String number){
+    public static long multiplyStringOfDigits(String number){
         long result = 1;
         for (int i = 0; i < number.length(); i++) {
             result *= Integer.parseInt((String.valueOf(number.charAt(i))));

@@ -33,9 +33,9 @@ import home_work_2.utils.ArraysUtils;
 public class Ex2 {
     private static int[] container, container2;
     static void outputArray(IArraysOperation operation, int[] arr){
-        operation.outputArray2_2_1(arr);
-        operation.outputArray2_2_2(arr);
-        operation.outputArray2_2_3(arr);
+        operation.getEveryElementsFromArray(arr);
+        operation.getEverySecondElementFromArray(arr);
+        operation.getElementsFromArrayInReverseOrder(arr);
     }
 
     public static void main(String[] args) {
@@ -45,9 +45,13 @@ public class Ex2 {
         IArraysOperation whileOperation = new WhileOperation();
         IArraysOperation forOperation = new ForOperation();
         IArraysOperation forEachOperation = new ForEachOperation();
+        System.out.println("DoWhileOperation:");
         outputArray(doWhileOperation, container);
+        System.out.print("\nWhileOperation: ");
         outputArray(whileOperation, container);
+        System.out.print("\nForOperation: ");
         outputArray(forOperation, container);
+        System.out.print("\nForEachOperation: ");
         outputArray(forEachOperation, container);
     }
 }

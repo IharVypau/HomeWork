@@ -32,14 +32,14 @@ public class Ex1_3 {
             System.out.println("Введено не корректное число (дробное, может быть отрицательным)");
         }
     }
-    static double calculatePow(double x, int y){
+    public static double calculatePow(double x, int y){
         double result = 1.0;
         for (int i = 1; i <= y; i++) {
             result *= x;
         }
         return result;
     }
-    static public String customFormat(double value ) {
+    public static String customFormat(double value ) {
         DecimalFormatSymbols formatSymbols = new DecimalFormatSymbols(Locale.ENGLISH);
         formatSymbols.setGroupingSeparator(' ');
         DecimalFormat df = new DecimalFormat("###,###.00",formatSymbols);

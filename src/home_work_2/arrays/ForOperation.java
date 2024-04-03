@@ -1,28 +1,32 @@
 package home_work_2.arrays;
 
 public class ForOperation implements IArraysOperation{
+    private StringBuilder str = new StringBuilder();
     @Override
-    public void outputArray2_2_1(int[] container) {
-        System.out.print("\nForOperation: ");
+    public String getEveryElementsFromArray(int[] container) {
+        str.delete(0, str.length());
         for (int i = 0; i < container.length; i++){
-            System.out.print(container[i]+" ");
+            str.append(container[i]).append(" ");
         }
+        return str.toString();
     }
     @Override
-    public void outputArray2_2_2(int[] container) {
-        System.out.print("\nForOperation: ");
+    public String getEverySecondElementFromArray(int[] container) {
+        str.delete(0, str.length());
         for (int i = 0; i < container.length; i++){
             if((i & 1) == 1){
-                System.out.print(container[i]+" ");
+                str.append(container[i]).append(" ");
             }
         }
+        return str.toString();
     }
     @Override
-    public void outputArray2_2_3(int[] container) {
-        System.out.print("\nForOperation: ");
+    public String getElementsFromArrayInReverseOrder(int[] container) {
+        str.delete(0, str.length());
         for (int i = container.length - 1; i >= 0; i--){
-            System.out.print(container[i]+" ");
+            str.append(container[i]).append(" ");
         }
+        return str.toString();
     }
 
 }

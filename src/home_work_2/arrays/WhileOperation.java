@@ -1,35 +1,39 @@
 package home_work_2.arrays;
 
 public class WhileOperation  implements IArraysOperation{
+    private StringBuilder str = new StringBuilder();
     @Override
-    public void outputArray2_2_1(int[] container) {
-        System.out.print("\nWhileOperation: ");
+    public String getEveryElementsFromArray(int[] container) {
+        str.delete(0, str.length());
         int i = 0;
         while(container.length > i){
-            System.out.print(container[i]+" ");
+            str.append(container[i]).append(" ");
             i++;
         }
+        return str.toString();
     }
 
     @Override
-    public void outputArray2_2_2(int[] container) {
-        System.out.print("\nWhileOperation: ");
+    public String getEverySecondElementFromArray(int[] container) {
+        str.delete(0, str.length());
         int i = 0;
         while(container.length > i){
             if((i & 1) == 1){
-                System.out.print(container[i]+" ");
+                str.append(container[i]).append(" ");
             }
             i++;
         }
+        return str.toString();
     }
 
     @Override
-    public void outputArray2_2_3(int[] container) {
-        System.out.print("\nWhileOperation: ");
+    public String getElementsFromArrayInReverseOrder(int[] container) {
+        str.delete(0, str.length());
         int i = container.length-1;
         while(i >= 0){
-            System.out.print(container[i]+" ");
+            str.append(container[i]).append(" ");
             i--;
         }
+        return str.toString();
     }
 }

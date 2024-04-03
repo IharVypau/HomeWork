@@ -1,33 +1,37 @@
 package home_work_2.arrays;
 
-public class DoWhileOperation implements IArraysOperation{
-    @Override
-    public void outputArray2_2_1(int[] container) {
-        int i = 0;
-        System.out.print("DoWhileOperation: ");
-        do {
-            System.out.print(container[i]+" ");
-        }while (++i < container.length);
+public class DoWhileOperation implements IArraysOperation {
+    private StringBuilder str = new StringBuilder();
 
+    @Override
+    public String getEveryElementsFromArray(int[] container) {
+        str.delete(0, str.length());
+        int i = 0;
+        do {
+            str.append(container[i]).append(" ");
+        } while (++i < container.length);
+        return str.toString();
     }
 
     @Override
-    public void outputArray2_2_2(int[] container) {
+    public String getEverySecondElementFromArray(int[] container) {
+        str.delete(0, str.length());
         int i = 0;
-        System.out.print("DoWhileOperation: ");
         do {
-            if((i & 1) == 1){
-                System.out.print(container[i]+" ");
+            if ((i & 1) == 1) {
+                str.append(container[i]).append(" ");
             }
-        }while (++i < container.length);
+        } while (++i < container.length);
+        return str.toString();
     }
 
     @Override
-    public void outputArray2_2_3(int[] container) {
-        int i = container.length-1;
-        System.out.println("DoWhileOperation: ");
+    public String getElementsFromArrayInReverseOrder(int[] container) {
+        str.delete(0, str.length());
+        int i = container.length - 1;
         do {
-            System.out.print(container[i]+" ");
-        }while (--i >= 0);
+            str.append(container[i]).append(" ");
+        } while (--i >= 0);
+        return str.toString();
     }
 }
