@@ -1,6 +1,7 @@
 package home_work_3.additional;
 
 import home_work_3.calcs.api.ICalculator;
+import home_work_3.calcs.simple.CalculatorWithMathCopy;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -8,19 +9,19 @@ import java.util.regex.Pattern;
 public class CalculatorStringExpression implements ICalculator {
     private StackNumbers stackNumbers;
     private InfixToPostfixParser parser;
-    private ICalculator calc;
+    private ICalculator calc = new CalculatorWithMathCopy();
     private String[] output;
 
-    public CalculatorStringExpression(ICalculator calc) {
-        this.calc = calc;
+    public CalculatorStringExpression(){
+        this.parser = new InfixToPostfixParser();
+    }
+    public boolean isCorrect(String in){
+        return parser.checkExpression(in);
     }
 
-    public boolean isCorrect(){
-        return parser.checkExpression();
-    }
-    private double parseAndCalculate() {
+    private double parseAndCalculate(String input) {
         double num1, num2;
-        output = parser.convert();
+        output = parser.convert(input);
         stackNumbers = new StackNumbers(output.length);
         for (int i = 0; i < output.length && output[i] != null; i++){
             if (output[i].matches("\\d+([.]\\d+)?")){
@@ -55,8 +56,10 @@ public class CalculatorStringExpression implements ICalculator {
         }
     }
     public double calculate(String input){
-        parser = new InfixToPostfixParser(input);
-        return parseAndCalculate();
+        input = input.replaceAll("\\s+","");
+        parser = new InfixToPostfixParser();
+        parser.parserInit(input);
+        return parseAndCalculate(input);
     }
 
     public double addition(double a, double b) {
@@ -92,14 +95,14 @@ class InfixToPostfixParser {
     private int currIdx;
     private String[] output;
 
-    public InfixToPostfixParser(String in) {
-        input = in;
+    public void parserInit(String in){
+        input= in.replaceAll("\\s+","");
         int size = in.length();
         stackOp = new StackOperator(size);
         output = new String[size];
     }
 
-    public String[] convert() {
+    public String[] convert(String input) {
         for (currIdx = 0; currIdx < input.length(); currIdx++) {
             char ch = input.charAt(currIdx);
             switch (ch) {
@@ -184,7 +187,8 @@ class InfixToPostfixParser {
         return outputNumber;
     }
 
-    public boolean checkExpression() {
+    public boolean checkExpression(String in) {
+        input= in.replaceAll("\\s+","");
         StackOperator stack = new StackOperator(input.length());
         String exp = "";
         for (int j = 0; j < input.length(); j++) {

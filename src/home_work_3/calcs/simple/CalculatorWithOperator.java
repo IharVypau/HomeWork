@@ -32,7 +32,4 @@ public class CalculatorWithOperator implements ICalculator {
         return Math.sqrt(a);
     }
 
-    public ICalculator getCalculator() {
-        return this;
-    }
 }

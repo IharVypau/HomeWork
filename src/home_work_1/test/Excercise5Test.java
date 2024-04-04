@@ -1,6 +1,5 @@
-package home_work_1.Test;
+package home_work_1.test;
 
-import home_work_1.Excercise4;
 import home_work_1.Excercise5;
 import org.junit.Test;
 

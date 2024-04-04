@@ -1,8 +1,7 @@
-package home_work_2.Test.loops;
+package home_work_2.test.loops;
 
 
-import home_work_2.arrays.*;
-        import home_work_2.loops.*;
+import home_work_2.loops.*;
         import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

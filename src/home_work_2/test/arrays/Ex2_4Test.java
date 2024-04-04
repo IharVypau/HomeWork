@@ -1,4 +1,4 @@
-package home_work_2.Test.arrays;
+package home_work_2.test.arrays;
 
 import home_work_2.arrays.Ex2_4;
 import org.junit.Test;

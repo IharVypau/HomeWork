@@ -11,10 +11,9 @@ public class CalculatorStringExpressionMain {
         Scanner in = new Scanner(System.in);
         String input = in.nextLine();*/
         String input =   "4.1 + 15 * 7 + (28 / 5) ^ 2"; // 140.46"
-        input= input.replaceAll("\\s+","");
         System.out.println(input);
-        CalculatorStringExpression stringCalcExpr = new CalculatorStringExpression(new CalculatorWithMathCopy());
-        if(stringCalcExpr.isCorrect()){
+        CalculatorStringExpression stringCalcExpr = new CalculatorStringExpression();
+        if(stringCalcExpr.isCorrect(input)){
             System.out.printf("%.2f%n", stringCalcExpr.calculate(input));
         }else {
             System.out.println("Выражение не корректное");

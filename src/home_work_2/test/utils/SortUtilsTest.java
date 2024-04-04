@@ -1,4 +1,4 @@
-package home_work_2.Test.utils;
+package home_work_2.test.utils;
 
 import home_work_2.utils.SortsUtils;
 import org.junit.Test;
