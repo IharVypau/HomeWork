@@ -1,6 +1,7 @@
 package home_work_3.test.additional;
 
 import home_work_3.additional.CalculatorStringExpression;
+import home_work_3.calcs.simple.CalculatorWithMathCopy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -8,7 +9,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class CalculatorStringExpressionTest {
-    private CalculatorStringExpression calculator = new CalculatorStringExpression();
+    private CalculatorStringExpression calculator = new CalculatorStringExpression(new CalculatorWithMathCopy());
 
     @DisplayName("CalculatorStringExpressionTest")
     @Test

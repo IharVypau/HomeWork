@@ -9,10 +9,11 @@ import java.util.regex.Pattern;
 public class CalculatorStringExpression implements ICalculator {
     private StackNumbers stackNumbers;
     private InfixToPostfixParser parser;
-    private ICalculator calc = new CalculatorWithMathCopy();
+    private ICalculator calc ;
     private String[] output;
 
-    public CalculatorStringExpression(){
+    public CalculatorStringExpression(ICalculator calc){
+        this.calc = calc;
         this.parser = new InfixToPostfixParser();
     }
     public boolean isCorrect(String in){

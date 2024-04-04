@@ -12,7 +12,7 @@ public class CalculatorStringExpressionMain {
         String input = in.nextLine();*/
         String input =   "4.1 + 15 * 7 + (28 / 5) ^ 2"; // 140.46"
         System.out.println(input);
-        CalculatorStringExpression stringCalcExpr = new CalculatorStringExpression();
+        CalculatorStringExpression stringCalcExpr = new CalculatorStringExpression(new CalculatorWithMathCopy());
         if(stringCalcExpr.isCorrect(input)){
             System.out.printf("%.2f%n", stringCalcExpr.calculate(input));
         }else {
