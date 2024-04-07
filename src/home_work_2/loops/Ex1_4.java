@@ -26,6 +26,6 @@ public class Ex1_4 {
             a = b;
             b = a * num;
         }while((b / a) == num );
-        return b;
+        return a;
     }
 }

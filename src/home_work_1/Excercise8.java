@@ -23,7 +23,7 @@ public class Excercise8 {
         else System.out.println("Число не корректное, должно быть от -127 до 127");
 
     }
-    private static String toBinaryString(int x) {
+    public static String toBinaryString(int x) {
         StringBuffer stringBuffer = new StringBuffer();
         do {
             stringBuffer.append((x & 1) == 1 ? "1" : "0");

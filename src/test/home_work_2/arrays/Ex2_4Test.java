@@ -1,7 +1,8 @@
-package home_work_2.test.arrays;
+package test.home_work_2.arrays;
 
 import home_work_2.arrays.Ex2_4;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.assertEquals;
 
@@ -10,9 +11,9 @@ public class Ex2_4Test {
 
     @Test
     public void getSumEvenPositiveElements() {
-        assertEquals(17, exe.getSumEvenPositiveElements(new int[]{4, 17, 32}));
-        assertEquals(6, exe.getSumEvenPositiveElements(new int[]{1, 2, 3, 4}));
-        assertEquals(0, exe.getSumEvenPositiveElements(new int[]{1, -2, 3, -4}));
+        Assertions.assertEquals(17, exe.getSumEvenPositiveElements(new int[]{4, 17, 32}));
+        Assertions.assertEquals(6, exe.getSumEvenPositiveElements(new int[]{1, 2, 3, 4}));
+        Assertions.assertEquals(0, exe.getSumEvenPositiveElements(new int[]{1, -2, 3, -4}));
     }
 
     @Test
