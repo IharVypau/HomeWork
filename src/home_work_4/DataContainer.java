@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class DataContainer<T> implements Iterable<T> {
     private static final String ERROR_INSERT_NULL_MSG = "Данный элемент == null, в наш контейнер вставлять нельзя";
@@ -39,7 +40,7 @@ public class DataContainer<T> implements Iterable<T> {
     }
 
     public T get(int index) {
-        if (index >= data.length) {
+        if (index < 0 || index >= data.length) {
             return null;
         }
         return data[index];
