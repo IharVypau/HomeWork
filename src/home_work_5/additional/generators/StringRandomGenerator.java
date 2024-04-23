@@ -8,9 +8,9 @@ import java.nio.file.Paths;
 import java.util.Random;
 
 public class StringRandomGenerator  {
-    private final static Random random = new Random();
+    private final Random random = new Random();
 
-    public static String getRandomStringFromSet(String[] set, int size){
+    public String getRandomStringFromSet(String[] set, int size){
         StringBuilder result = new StringBuilder();
         for(int i = 0;i < size;i++){
             result.append(set[random.nextInt(set.length)]);
@@ -18,13 +18,4 @@ public class StringRandomGenerator  {
         return result.toString();
     }
 
-    public static String[] getRandomStringFromFile(String filePath){
-        File file = new File(filePath);
-        try {
-            var lines = Files.readAllLines(Paths.get(file.toURI()), StandardCharsets.UTF_8);
-            return lines.toArray(String[]::new);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
 }

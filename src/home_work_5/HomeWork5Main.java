@@ -1,6 +1,5 @@
 package home_work_5;
 
-import home_work_5.comparators.SorUsertByPasswordLength;
 import home_work_5.comparators.SortByAnimalAge;
 import home_work_5.comparators.SortByAnimalAgeAndAnimalNames;
 import home_work_5.comparators.SortUserByPasswordLengthAndNickName;
@@ -10,6 +9,7 @@ import home_work_5.additional.generators.AnimalGenerator;
 import home_work_5.additional.generators.Generator;
 import home_work_5.additional.generators.PersonGenerator;
 import home_work_5.utils.SortUtil;
+import home_work_5.utils.StatisticsUtil;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -17,64 +17,55 @@ import java.util.stream.Collectors;
 import static home_work_5.enums.EConfig.*;
 
 public class HomeWork5Main {
+    private static final int ELEMENTS_COUNT = 10_000;
     public static void main(String[] args) {
+
         List<Person> list1 = new ArrayList<>();
         List<Animal> list2 = new LinkedList<>();
         Set<Person> set1 = new HashSet<>();
         Set<Animal> set2 = new TreeSet<>(new SortByAnimalAge());
 
+        StatisticsUtil statistics = new StatisticsUtil();
+
         Generator<Person> personGenerator = new PersonGenerator(FROM_FILE, FROM_RANDOM_SET, FROM_SET_OF_NAMES);
         Generator<Animal> animalGenerator = new AnimalGenerator(FROM_SET_OF_NAMES);
 
-        initializeCollection(list1,personGenerator, 100_000, "Заполнения коллекции ArrayList<Person>");
-        initializeCollection(list2,animalGenerator, 100_000, "Заполнения коллекции LinkedList<Animal>");
-        initializeCollection(set1,personGenerator, 100_000, "Заполнения коллекции HashSet<Person>");
-        initializeCollection(set1,personGenerator, 100_000, "Заполнения коллекции TreeSet<Animal>");
+        statistics.initializeCollection(list1, ELEMENTS_COUNT, personGenerator);
+        statistics.initializeCollection(list2, ELEMENTS_COUNT, animalGenerator);
+        statistics.initializeCollection(set1, ELEMENTS_COUNT, personGenerator);
+        statistics.initializeCollection(set2, ELEMENTS_COUNT, animalGenerator);
+        System.out.println();
+        statistics.sortCollectionPersonsUsingCustomComparators(list1, new SortUserByPasswordLengthAndNickName());
+        statistics.sortCollectionAnimalsUsingJdk(list2);
+        statistics.sortCollectionPersonsUsingCustomSort(list2, new SortByAnimalAgeAndAnimalNames());
+        System.out.println();
+        statistics.iterateCollectionUsingIterator(list1);
+        statistics.iterateCollectionUsingIterator(list2);
+        statistics.iterateCollectionUsingIterator(set1);
+        statistics.iterateCollectionUsingIterator(set2);
+        System.out.println();
+        statistics.iterateListUsingFor(list1);
+        statistics.iterateListUsingFor(list2);
+        statistics.iterateListUsingFor(set1);
+        statistics.iterateListUsingFor(set2);
+        System.out.println();
+        List<Person> list1Copy = new ArrayList<>(list1);
+        List<Animal> list2Copy = new LinkedList<>(list2);
+        Set<Person> set1Copy = new HashSet<>(set1);
+        Set<Animal> set2Copy = new TreeSet<>(new SortByAnimalAge());
+        set2Copy.addAll(set2);
 
-        iterateCollectionUsingIterator(list1, "Итерирования коллекции ArrayList<Person>");
-        iterateCollectionUsingIterator(list2, "Итерирования коллекции LinkedList<Animal>");
-        iterateCollectionUsingIterator(set1, "Итерирования коллекции HashSet<Person>");
-        iterateCollectionUsingIterator(set2, "Итерирования коллекции TreeSet<Animal>");
-
-        iterateListUsingFor(list1, "Итерирования коллекции при помощи for ArrayList<Person>");
-        iterateListUsingFor(list2, "Итерирования коллекции при помощи for LinkedList<Animal>");
-        //iterateSetUsingFor(set1, "Итерирования коллекции HashSet<Person>");
-        //iterateSetUsingFor(set2, "Итерирования коллекции TreeSet<Animal>");
-
-        list1.sort(new SortUserByPasswordLengthAndNickName());
-        list2.sort(Comparator.comparing(Animal::getAge));
-        SortUtil.insertionSort(list2, new SortByAnimalAgeAndAnimalNames());
-
+        statistics.removeElementsFromCollectionUsingIterator(list1);
+        statistics.removeElementsFromCollectionUsingIterator(list2);
+        statistics.removeElementsFromCollectionUsingIterator(set1);
+        statistics.removeElementsFromCollectionUsingIterator(set2);
+        System.out.println();
+        statistics.removeElementsFromCollectionUsingJdk(list1Copy);
+        statistics.removeElementsFromCollectionUsingJdk(list2Copy);
+        statistics.removeElementsFromCollectionUsingJdk(set1Copy);
+        statistics.removeElementsFromCollectionUsingJdk(set2Copy);
     }
 
-    private static <T> void initializeCollection(Collection<T> collection, Generator<T> gen, int count, String op){
-        long start = System.currentTimeMillis();
-        gen.generateCollection(collection, count);
-        long total = System.currentTimeMillis() - start;
-        displayStatistics(op, total);
-    }
-    private static <T> void iterateCollectionUsingIterator(Collection<T> collection, String op){
-        long start = System.currentTimeMillis();
-        Iterator<T> it = collection.iterator();
-        while(it.hasNext()){
-            it.next();
-        }
-        long total = System.currentTimeMillis() - start;
-        displayStatistics(op, total);
-    }
-
-    private static <T> void iterateListUsingFor(List<T> collection, String op){
-        long start = System.currentTimeMillis();
-        for (int i = 0; i < collection.size(); i++) {
-            collection.get(i);
-        }
-        long total = System.currentTimeMillis() - start;
-        displayStatistics(op, total);
-    }
-
-    private static void displayStatistics(String op, long time){
-        System.out.println(op +": " + time+"ms");
-    }
 
 
 }
