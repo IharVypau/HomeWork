@@ -1,16 +1,15 @@
-package home_work_6;
+package home_work_6.utils;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class FileHandler {
+public class FileHandlerUtil {
 
-    private File currentFile;
+    private final File currentFile;
     private StringBuilder text = new StringBuilder();
-    private FileDataContainer container;
-    public FileHandler(File currentFile) {
+    public FileHandlerUtil(File currentFile) {
         this.currentFile = currentFile;
         handleFile();
     }
@@ -26,7 +25,8 @@ public class FileHandler {
             System.out.println("Ошибка чтения данных: " + e);
         }
     }
-    public FileDataContainer buildDataContainer() {
-        return new FileDataContainer(text.toString());
+
+    public String getFileContent() {
+        return text.toString();
     }
 }

@@ -1,6 +1,6 @@
-package home_work_6;
+package home_work_6.seachers.simple;
 
-import home_work_6.api.ISearchEngine;
+import home_work_6.seachers.api.ISearchEngine;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 

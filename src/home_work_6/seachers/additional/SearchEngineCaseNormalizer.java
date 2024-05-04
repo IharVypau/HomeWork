@@ -1,6 +1,6 @@
-package home_work_6;
+package home_work_6.seachers.additional;
 
-import home_work_6.api.ISearchEngine;
+import home_work_6.seachers.api.ISearchEngine;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,11 +8,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class SearchEngineCaseNormalizer implements ISearchEngine {
-    private final ISearchEngine searchEngine;
-
-    public SearchEngineCaseNormalizer(ISearchEngine searchEngine) {
-        this.searchEngine = searchEngine;
-    }
 
     @Override
     public long search(String text, String word) {

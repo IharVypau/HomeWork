@@ -1,6 +1,6 @@
-package home_work_6;
+package home_work_6.seachers.additional;
 
-import home_work_6.api.ISearchEngine;
+import home_work_6.seachers.api.ISearchEngine;
 
 public class SearchEnginePunctuationNormalizer implements ISearchEngine {
     private final ISearchEngine searchEngine;

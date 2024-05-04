@@ -2,15 +2,18 @@ package home_work_6.utils;
 
 import java.io.File;
 
-public class DirectoryReaderUtil {
+public class DirecroryReaderUtil {
     private File path;
     private File[] filesList;
 
-    public DirectoryReaderUtil(String dir) {
+    public DirecroryReaderUtil(String dir) {
         path = new File(dir);
         filesList= path.listFiles();
     }
 
+    public File getFileByName(String name) {
+        return new File(path.getPath()+"/"+ name);
+    }
     public String getListOfTxtFiles(){
         StringBuilder sb = new StringBuilder();
         if(filesList != null){
@@ -21,9 +24,5 @@ public class DirectoryReaderUtil {
             }
         }
         return sb.toString();
-    }
-
-    public File getFileFromList(String name) {
-        return new File(path.getPath()+"/"+ name);
     }
 }
