@@ -43,6 +43,7 @@ public class Book {
     }
 
     public long getCountMatchesWordInText(String word){
+        text = "Война Падежи, склонения, и форма слова, опечатки, война  перенвойнаосы и прочие И проблемы текста";
          return searchEngine.search(text, word);
     }
 

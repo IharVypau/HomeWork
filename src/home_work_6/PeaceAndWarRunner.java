@@ -24,14 +24,15 @@ public class PeaceAndWarRunner {
         int n = scan.nextInt();
         System.out.println(book.getTopNWordsMostUsed(n));
 
-        System.out.println("Слово 'война'(как есть) встречается в тексте"+ book.getCountMatchesWordInText("война") + " раз");
-        System.out.println("Слово 'и' (как есть) встречается в тексте"+ book.getCountMatchesWordInText("и") + " раз");
-        System.out.println("Слово 'мир' (как есть) встречается в тексте"+ book.getCountMatchesWordInText("мир") + " раз");
+        System.out.println("Слово 'война'(как есть) встречается в тексте "+ book.getCountMatchesWordInText("война") + " раз");
+        System.out.println("Слово 'и' (как есть) встречается в тексте "+ book.getCountMatchesWordInText("и") + " раз");
+        System.out.println("Слово 'мир' (как есть) встречается в тексте "+ book.getCountMatchesWordInText("мир") + " раз");
         book.setSearchEngine(new RegSearchCaseInsensitive());
-        System.out.println("Слово 'война'(без учета регистра) встречается в тексте"+ book.getCountMatchesWordInText("война") + " раз");
-        System.out.println("Слово 'и' (без учета регистра) встречается в тексте"+ book.getCountMatchesWordInText("и") + " раз");
-        System.out.println("Слово 'мир'(без учета регистра) встречается в тексте"+ book.getCountMatchesWordInText("мир") + " раз");
-
+        System.out.println();
+        System.out.println("Слово 'война'(без учета регистра) встречается в тексте "+ book.getCountMatchesWordInText("война") + " раз");
+        System.out.println("Слово 'и' (без учета регистра) встречается в тексте "+ book.getCountMatchesWordInText("и") + " раз");
+        System.out.println("Слово 'мир'(без учета регистра) встречается в тексте "+ book.getCountMatchesWordInText("мир") + " раз");
+        System.out.println();
 
         /*
        // findTopNWordsMostUsed(textArr,n);
