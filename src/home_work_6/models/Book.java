@@ -2,19 +2,22 @@ package home_work_6.models;
 
 import home_work_6.seachers.api.ISearchEngine;
 import home_work_6.seachers.simple.EasySearch;
+import home_work_6.utils.FileHandlerUtil;
 
+import java.io.File;
 import java.util.*;
 import java.util.regex.Pattern;
 
 public class Book {
     private static final Pattern PATTERN = Pattern.compile("\\s*(\\s|,|!|;|:|- | -|--|=|\\*|\\)|\\(|\\?|\\.)\\s*");
+    private static final String PATH_TO_WRITING_FILE = Library.WORKING_DIR +"asserts/results.txt";
     private ArrayList<String> listOfWords;
     private ISearchEngine searchEngine = new EasySearch();
     private String text = "";
+    private String name = "";
 
-    protected Book(String text) {
-        this.text = text;
-        setListOfWords();
+    protected Book(String name){
+        this.name = name;
     }
 
     private void setListOfWords(){
@@ -43,11 +46,23 @@ public class Book {
     }
 
     public long getCountMatchesWordInText(String word){
-        text = "Война Падежи, склонения, и форма слова, опечатки, война  перенвойнаосы и прочие И проблемы текста";
          return searchEngine.search(text, word);
     }
 
     public void setSearchEngine(ISearchEngine searchEngine) {
         this.searchEngine = searchEngine;
+    }
+
+    public void saveSearchResults(String word, long cnt){
+        new FileHandlerUtil(new File(PATH_TO_WRITING_FILE)).writeInFile(name + " - "+ word+ " - "+ cnt);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+        setListOfWords();
     }
 }

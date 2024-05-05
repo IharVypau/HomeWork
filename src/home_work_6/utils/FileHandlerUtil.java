@@ -1,19 +1,17 @@
 package home_work_6.utils;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 
 public class FileHandlerUtil {
 
     private final File currentFile;
-    private StringBuilder text = new StringBuilder();
+    private final StringBuffer text = new StringBuffer();
     public FileHandlerUtil(File currentFile) {
         this.currentFile = currentFile;
-        handleFile();
+        readFile();
     }
-    public void handleFile(){
+
+    public void readFile(){
         try (FileReader reader = new FileReader(currentFile.getPath());
              BufferedReader buf = new BufferedReader(reader) )
          {
@@ -21,8 +19,18 @@ public class FileHandlerUtil {
             while ((line = buf.readLine()) != null){
                 text.append(line);
             }
-        } catch (IOException e){
+         } catch (IOException e){
             System.out.println("Ошибка чтения данных: " + e);
+        }
+    }
+
+    public void writeInFile(String text){
+        try (FileWriter writer = new FileWriter(currentFile, true)) {
+            writer.write(text);
+            writer.append("\n");
+            writer.flush();
+        }  catch (IOException e){
+            System.out.println("Произошла ошибка работы с файлом");
         }
     }
 
