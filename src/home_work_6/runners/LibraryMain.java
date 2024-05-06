@@ -7,8 +7,10 @@ import home_work_6.seachers.additional.RegSearchCaseInsensitive;
 
 import java.util.*;
 
+import static java.awt.desktop.UserSessionEvent.Reason.CONSOLE;
+
 public class LibraryMain {
-    public static final Scanner CONSOLE = new Scanner(System.in);
+    protected final static Scanner console = new Scanner(System.in);
 
     public static void main(String[] args) {
         Catalog catalog = ELibrary.INSTANCE.getCatalogByName("catalog5");
@@ -35,6 +37,7 @@ public class LibraryMain {
     }
 
     public static void workWithLibrary() {
+        Scanner console = new Scanner(System.in);
         System.out.println("Добро пожаловать в библиотеку!");
         System.out.println("Список имеющихся каталогов:");
         System.out.println(getCatalogsList());
@@ -42,7 +45,7 @@ public class LibraryMain {
         System.out.println("Введите название каталога ( адрес папки ), с которым мы будем работать");
         System.out.println("Для выхода из библиотеки нажмите exit");
         do {
-            catalogName = readLine();
+            catalogName = console.nextLine();
             try {
                 CatalogMain.workWithCatalog(ELibrary.INSTANCE.getCatalogByName(catalogName));
             } catch (IllegalArgumentException e) {
@@ -50,6 +53,7 @@ public class LibraryMain {
                     System.out.println(e.getMessage());
                 }
             }
+
         } while (!catalogName.equals("exit"));
         System.out.println("До новых встреч в библиотеке!");
     }
@@ -68,20 +72,22 @@ public class LibraryMain {
     }
 
     protected static int inputNumber() {
+
         int val = 0;
-        if(CONSOLE.hasNextInt()) {
-            val = CONSOLE.nextInt();
-        }else{
+        if (console.hasNextInt()) {
+            val = console.nextInt();
+        } else {
             System.out.println("Ошибка ввода числа");
         }
         return val;
     }
-
-    protected static String readLine() {
-        String text = "";
-        text = CONSOLE.nextLine();
-        return text;
+    protected static String readLine(){
+        Scanner console = new Scanner(System.in);
+        String value  = "";
+        if (console.hasNextLine()) {
+            value = console.nextLine();
+        }
+        return value;
     }
-
 
 }

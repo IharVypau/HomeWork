@@ -3,6 +3,8 @@ package home_work_6.runners;
 import home_work_6.models.Book;
 import home_work_6.models.Catalog;
 
+import java.util.Scanner;
+
 public class CatalogMain extends LibraryMain{
     public static void workWithCatalog(Catalog catalog) {
         System.out.println("Вы находитесь в каталоге: " + catalog.getCatalogName());
