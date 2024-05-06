@@ -6,7 +6,7 @@ import java.util.HashMap;
 
 public class Catalog {
     private final String catalogName;
-    private static final HashMap<String, Book> books = new HashMap<>();
+    private final HashMap<String, Book> books = new HashMap<>();
     private final DirecroryReaderUtil dirReader;
 
     public Catalog(String dir, String catalogName) {
@@ -22,10 +22,10 @@ public class Catalog {
     }
 
     public Book getBookByName(String name) {
-        Book book = books.get(name);
-        if(book == null){
-            return null;
+        if(!checkBookIsExist(name)){
+            throw new IllegalArgumentException("Ввели неверное имя книги, попробуйте снова");
         }
+        Book book = books.get(name);
         book.setText(new FileHandlerUtil(dirReader.getFileByName(name)).getFileContent());
         return book;
     }
@@ -37,7 +37,7 @@ public class Catalog {
     public String[] getBooksList(){
         return books.keySet().toArray(new String[0]);
     }
-    public boolean checkBookIsExist(String bookName){
+    private boolean checkBookIsExist(String bookName){
         return books.containsKey(bookName);
     }
 

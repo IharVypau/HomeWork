@@ -10,7 +10,7 @@ public class BookMain extends CatalogMain{
         System.out.println("Для выхода, или выбора другой книги введите exit");
         String word = "";
         do {
-            word = CONSOLE.nextLine();
+            word = readLine();
             if(!word.equals("exit")){
                 long cnt = book.getCountMatchesWordInText(word);
                 System.out.println("Количество совпадений равно: "+ cnt);

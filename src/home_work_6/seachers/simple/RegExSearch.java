@@ -8,13 +8,11 @@ public class RegExSearch implements ISearchEngine {
 
     @Override
     public long search(String text, String word) {
-        Pattern pattern = Pattern.compile(word);
+        Pattern pattern = Pattern.compile("(^|[^а-яА-ЯёЁ_])" + word + "(?![а-яА-ЯёЁ_])");
         Matcher match = pattern.matcher(text);
-       // List<String> list = new ArrayList<>();
         long cnt = 0;
         while (match.find()) {
             cnt++;
-            //list.add(text.substring(match.start() - 2, match.end()+ 2));
         }
         return cnt;
     }

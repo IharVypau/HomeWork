@@ -12,12 +12,14 @@ public class CatalogMain extends LibraryMain{
         do {
             System.out.println("Введите название книги (файла), с которой мы будем работать");
             System.out.println("для выхода из каталога нажмите exit");
-            bookName = CONSOLE.nextLine();
-            Book book = catalog.getBookByName(bookName);
-            if (book != null) {
+            bookName = readLine();
+            try{
+                Book book = catalog.getBookByName(bookName);
                 BookMain.workWithBook(book);
-            } else if(!bookName.equals("exit")){
-                System.out.println("Ввели неверное имя книги, попробуйте снова");
+            }catch (IllegalArgumentException e){
+                if(!bookName.equals("exit")){
+                    System.out.println(e.getMessage());
+                }
             }
         } while (!bookName.equals("exit"));
         System.out.println("Вы вышли из каталога: "+ catalog.getCatalogName());

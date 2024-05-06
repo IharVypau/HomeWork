@@ -11,7 +11,7 @@ public class SearchEnginePunctuationNormalizer implements ISearchEngine {
 
     @Override
     public long search(String text, String word) {
-        text = text.replaceAll("[\\W*|_]","");
+        text = text.replaceAll("[!|@|_|$|%|^|&|*|?|~|(|)|<|>|:|/|'|\"]"," ");
         return searchEngine.search(text, word);
     }
 }

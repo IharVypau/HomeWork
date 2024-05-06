@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 
 public class Book {
     private static final Pattern PATTERN = Pattern.compile("\\s*(\\s|,|!|;|:|- | -|--|=|\\*|\\)|\\(|\\?|\\.)\\s*");
-    private static final String PATH_TO_WRITING_FILE = Library.WORKING_DIR +"asserts/results.txt";
+    private static final String PATH_TO_WRITING_FILE = "asserts/results.txt";
     private ArrayList<String> listOfWords;
     private ISearchEngine searchEngine = new EasySearch();
     private String text = "";
@@ -54,7 +54,9 @@ public class Book {
     }
 
     public void saveSearchResults(String word, long cnt){
-        new FileHandlerUtil(new File(PATH_TO_WRITING_FILE)).writeInFile(name + " - "+ word+ " - "+ cnt);
+        new FileHandlerUtil(
+                new File(ELibrary.Properties.HOME_DIRECTORY.getPath() + PATH_TO_WRITING_FILE)).
+                writeInFile(name + " - "+ word+ " - "+ cnt);
     }
 
     public String getName() {
