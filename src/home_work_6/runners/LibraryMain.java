@@ -4,10 +4,7 @@ import home_work_6.models.Book;
 import home_work_6.models.Catalog;
 import home_work_6.models.ELibrary;
 import home_work_6.seachers.additional.RegSearchCaseInsensitive;
-
 import java.util.*;
-
-import static java.awt.desktop.UserSessionEvent.Reason.CONSOLE;
 
 public class LibraryMain {
     protected final static Scanner console = new Scanner(System.in);

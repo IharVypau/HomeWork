@@ -1,5 +1,6 @@
 package home_work_6.models;
 
+import home_work_6.enums.EProperties;
 import home_work_6.seachers.api.ISearchEngine;
 import home_work_6.seachers.simple.EasySearch;
 import home_work_6.utils.FileHandlerUtil;
@@ -55,7 +56,7 @@ public class Book {
 
     public void saveSearchResults(String word, long cnt){
         new FileHandlerUtil(
-                new File(ELibrary.Properties.HOME_DIRECTORY.getPath() + PATH_TO_WRITING_FILE)).
+                new File(EProperties.HOME_DIRECTORY.getPath() + PATH_TO_WRITING_FILE)).
                 writeInFile(name + " - "+ word+ " - "+ cnt);
     }
 

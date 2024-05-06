@@ -1,26 +1,13 @@
 package home_work_6.models;
 
-
 import home_work_6.utils.DirecroryReaderUtil;
-
 import java.util.HashMap;
+import static home_work_6.enums.EProperties.LIBRARY;
 
 public enum ELibrary {
-    INSTANCE(Properties.LIBRARY.getPath());
+    INSTANCE(LIBRARY.getPath());
     private String directory = ".";
     private final HashMap<String, Catalog> catalogs = new HashMap<>();
-    enum Properties{
-        HOME_DIRECTORY("src/home_work_6/"),
-        LIBRARY("src/home_work_6/library/");
-        private String path = ".";
-        Properties(String path) {
-            this.path = path;
-        }
-
-        public String getPath() {
-            return path;
-        }
-    }
 
     ELibrary(String workDirectory) {
         this.directory = workDirectory;
@@ -28,9 +15,9 @@ public enum ELibrary {
     }
 
     private void initCatalogs() {
-        String[] catalogsList = DirecroryReaderUtil.getFolderList(Properties.LIBRARY.getPath());
+        String[] catalogsList = DirecroryReaderUtil.getFolderList(LIBRARY.getPath());
         for (String catalogName : catalogsList) {
-            catalogs.put(catalogName, new Catalog((Properties.LIBRARY.getPath() + catalogName), catalogName));
+            catalogs.put(catalogName, new Catalog((LIBRARY.getPath() + catalogName), catalogName));
         }
     }
 
