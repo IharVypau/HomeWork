@@ -4,3 +4,7 @@ Ponimanie-SQL.txt - SQL - 706
 Ponimanie-SQL copy 6.txt - www - 0
 Ponimanie-SQL copy 6.txt - delete - 1
 Ponimanie-SQL copy 6.txt - INSERT - 92
+Ponimanie-SQL-1 copy 6.txt - eqwr - 0
+Ponimanie-SQL-1 copy 6.txt - w - 142
+Ponimanie-SQL-1 copy 6.txt - sql - 0
+Ponimanie-SQL-1 copy 6.txt - SQL - 706
