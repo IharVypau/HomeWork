@@ -4,7 +4,7 @@ import home_work_6.models.Book;
 
 public class BookMain extends CatalogMain{
     public static void workWithBook(Book book) {
-        System.out.println("Вы работаете с книгой: " + book.getName());
+        System.out.println("Вы работаете с книгой: " + book.getBookName());
         System.out.println("Введите, что вы хотите найти в этой книге: ");
         System.out.println("Все запросы и их результат, будут записаны в файле results.txt");
         System.out.println("Для выхода, или выбора другой книги введите exit");

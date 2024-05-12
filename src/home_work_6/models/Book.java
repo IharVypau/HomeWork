@@ -9,7 +9,7 @@ import java.io.File;
 import java.util.*;
 import java.util.regex.Pattern;
 
-public class Book {
+public class Book  {
     private static final Pattern PATTERN = Pattern.compile("\\s*(\\s|,|!|;|:|- | -|--|=|\\*|\\)|\\(|\\?|\\.)\\s*");
     private static final String PATH_TO_WRITING_FILE = "asserts/results.txt";
     private ArrayList<String> listOfWords;
@@ -60,12 +60,15 @@ public class Book {
                 writeInFile(name + " - "+ word+ " - "+ cnt);
     }
 
-    public String getName() {
+    public String getBookName() {
         return name;
     }
 
     public void setText(String text) {
         this.text = text;
         setListOfWords();
+    }
+    public String getText(){
+        return text;
     }
 }

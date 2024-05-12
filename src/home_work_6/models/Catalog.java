@@ -4,7 +4,7 @@ import home_work_6.utils.DirecroryReaderUtil;
 import home_work_6.utils.FileHandlerUtil;
 import java.util.HashMap;
 
-public class Catalog {
+public class Catalog{
     private final String catalogName;
     private final HashMap<String, Book> books = new HashMap<>();
     private final DirecroryReaderUtil dirReader;
@@ -41,4 +41,7 @@ public class Catalog {
         return books.containsKey(bookName);
     }
 
+    public HashMap<String, Book> getBooks() {
+        return books;
+    }
 }
