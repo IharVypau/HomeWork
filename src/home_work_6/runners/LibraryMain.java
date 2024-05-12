@@ -55,7 +55,7 @@ public class LibraryMain {
         System.out.println("До новых встреч в библиотеке!");
     }
 
-    private static String getCatalogsList() {
+    static String getCatalogsList() {
         String[] catalogs = ELibrary.INSTANCE.displayCatalogs();
         return formatArrayToString(catalogs);
     }
