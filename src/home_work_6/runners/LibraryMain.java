@@ -4,10 +4,11 @@ import home_work_6.models.Book;
 import home_work_6.models.Catalog;
 import home_work_6.models.ELibrary;
 import home_work_6.seachers.additional.RegSearchCaseInsensitive;
+import home_work_6.seachers.simple.SearchInCatalog;
+
 import java.util.*;
 
 public class LibraryMain {
-    protected final static Scanner console = new Scanner(System.in);
 
     public static void main(String[] args) {
         Catalog catalog = ELibrary.INSTANCE.getCatalogByName("catalog5");
@@ -16,7 +17,12 @@ public class LibraryMain {
         long cnt = book.getCountOfUsedWords();
         System.out.printf("Количество использованных слов в книге %s : %d%n", fileName, cnt);
         System.out.println("Введите величину N (топ самых используемых слов ):");
-        int n = Math.max(inputNumber(), 0);
+        int n = 0;
+        try{
+            n = Math.max(Integer.parseInt(readLine()), 0);
+        }catch (NumberFormatException e){
+            System.out.println("Введено не число");
+        }
         System.out.println(book.getTopNWordsMostUsed(n));
 
         System.out.println("Слово 'война'(как есть) встречается в тексте " + book.getCountMatchesWordInText("война") + " раз");
@@ -34,7 +40,7 @@ public class LibraryMain {
     }
 
     public static void workWithLibrary() {
-        Scanner console = new Scanner(System.in);
+
         System.out.println("Добро пожаловать в библиотеку!");
         System.out.println("Список имеющихся каталогов:");
         System.out.println(getCatalogsList());
@@ -42,13 +48,13 @@ public class LibraryMain {
         System.out.println("Введите название каталога ( адрес папки ), с которым мы будем работать");
         System.out.println("Для выхода из библиотеки нажмите exit");
         do {
-            catalogName = console.nextLine();
             try {
+                catalogName = readLine();
                 CatalogMain.workWithCatalog(ELibrary.INSTANCE.getCatalogByName(catalogName));
+                System.out.println("Введите название каталога ( адрес папки ), с которым мы будем работать");
+                System.out.println("Для выхода из библиотеки нажмите exit");
             } catch (IllegalArgumentException e) {
-                if (!catalogName.equals("exit")) {
-                    System.out.println(e.getMessage());
-                }
+                System.out.println(e.getMessage());
             }
 
         } while (!catalogName.equals("exit"));
@@ -67,24 +73,15 @@ public class LibraryMain {
         }
         return sb.toString();
     }
-
-    protected static int inputNumber() {
-
-        int val = 0;
-        if (console.hasNextInt()) {
-            val = console.nextInt();
-        } else {
-            System.out.println("Ошибка ввода числа");
-        }
-        return val;
-    }
     protected static String readLine(){
-        Scanner console = new Scanner(System.in);
-        String value  = "";
-        if (console.hasNextLine()) {
-            value = console.nextLine();
+        Scanner scanner = new Scanner(System.in);
+        while(scanner.hasNextLine()){
+            return scanner.nextLine();
         }
-        return value;
+        scanner.close();
+        return "";
     }
+
+
 
 }

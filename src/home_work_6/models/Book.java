@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 
 public class Book  {
     private static final Pattern PATTERN = Pattern.compile("\\s*(\\s|,|!|;|:|- | -|--|=|\\*|\\)|\\(|\\?|\\.)\\s*");
-    private static final String PATH_TO_WRITING_FILE = "asserts/results.txt";
+    private static final String PATH_TO_WRITING_FILE = "resources/results.txt";
     private ArrayList<String> listOfWords;
     private ISearchEngine searchEngine = new EasySearch();
     private String text = "";

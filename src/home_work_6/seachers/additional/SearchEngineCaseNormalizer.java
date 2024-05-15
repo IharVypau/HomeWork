@@ -12,11 +12,11 @@ public class SearchEngineCaseNormalizer implements ISearchEngine {
     @Override
     public long search(String text, String word) {
         Pattern pattern = Pattern.compile("(^|[^а-яА-ЯёЁ_])" + word + "[а-я]*");
-        Matcher matcher = pattern.matcher(text);
-        List<String> list = new ArrayList<>();
-        while (matcher.find()) {
-            list.add(matcher.group());
+        Matcher match = pattern.matcher(text);
+        long cnt = 0;
+        while (match.find()) {
+            cnt++;
         }
-        return list.size();
+        return cnt;
     }
 }

@@ -2,6 +2,8 @@ package home_work_6.runners;
 
 import home_work_6.models.Book;
 
+import java.util.Scanner;
+
 public class BookMain extends CatalogMain{
     public static void workWithBook(Book book) {
         System.out.println("Вы работаете с книгой: " + book.getBookName());
